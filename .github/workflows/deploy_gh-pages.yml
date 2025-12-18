@@ -3,22 +3,21 @@ name: Deploy Static Website to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main   # 当 main 分支有更新时触发
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ 检出仓库
+      # 1️⃣ 检出仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ 部署根目录到 gh-pages
+      # 2️⃣ 部署 website 文件夹到 gh-pages
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages         # 部署目标分支
-          folder: ./               # 部署仓库根目录
-          clean: true              # 清空 gh-pages 分支旧内容
-          clean-exclude: .git/**   # 排除 .git 文件夹，防止 exit code 24
+          branch: gh-pages     # 部署目标分支
+          folder: website      # 指向 website 文件夹
+          clean: true          # 清空 gh-pages 分支旧内容
