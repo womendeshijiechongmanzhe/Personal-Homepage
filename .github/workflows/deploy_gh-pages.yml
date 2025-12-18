@@ -1,20 +1,24 @@
-name: Deploy main to gh-pages
+name: Deploy Static Website to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main   # 当 main 分支有更新时触发
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      # 1️⃣ 检出仓库代码
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2️⃣ 部署根目录到 gh-pages
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages       # 部署到 gh-pages 分支
-          folder: ./             # 指向仓库根目录，部署所有文件
+          branch: gh-pages       # 部署目标分支
+          folder: ./             # 根目录
+          clean: true            # 清空 gh-pages 分支
+          exclude: .git/**       # 排除 .git 文件夹，防止 rsync 错误
