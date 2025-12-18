@@ -13,16 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24.11.1
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: dist
+          branch: gh-pages       # 部署到 gh-pages 分支
+          folder: ./             # 指向仓库根目录，部署所有文件
