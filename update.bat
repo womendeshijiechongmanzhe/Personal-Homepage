@@ -6,6 +6,10 @@ echo   Git 自动更新远程仓库
 echo ===============================
 
 echo.
+echo [0/5] 当前远程仓库：
+git remote -v
+
+echo.
 echo [1/5] 当前分支：
 git branch --show-current
 
@@ -29,10 +33,10 @@ git commit -m "auto update %now%"
 echo.
 echo [5/5] 推送到远程仓库...
 git pull --rebase
-git push
+git push -u origin main
 
 echo.
-echo 完成！代码已同步到 GitHub 🎉
+echo 🎉 完成！代码已同步到 GitHub
 
 :end
 pause
